@@ -1,15 +1,8 @@
-# Use the official Nginx image from the Docker Hub
-FROM nginx:latest
+# Use the official Tomcat image from the Docker Hub
+FROM tomcat:latest
 
-# Create necessary directories with the correct permissions
-RUN mkdir -p /var/cache/nginx/client_temp && \
-    chown -R nginx:nginx /var/cache/nginx
+# Expose port 8080 to the outside world
+EXPOSE 8080
 
-# Expose port 80 to the outside world
-EXPOSE 80
-
-# Ensure the container runs as the nginx user
-USER nginx
-
-# Start Nginx when the container launches
-CMD ["nginx", "-g", "daemon off;"]
+# Start Tomcat when the container launches
+CMD ["catalina.sh", "run"]
